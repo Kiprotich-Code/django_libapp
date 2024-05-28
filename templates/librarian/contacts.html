@@ -1,0 +1,16 @@
+{% extends './dashboard.html' %}
+
+{% block content %}
+<div id="content" class="can_have_sidenav">
+    <div class="p-5">
+        <h2 class="small fw-lighter"># Inbox</h2>
+        {% for contact in contacts %}
+        <div class="col col-lg-8 p-3 rounded border border-top-0 border-start-0 border-end-0">
+            <p class="fw-bold">From: {{contact.email}}</p>
+            <p class="fw-lighter"><strong>Message: </strong>{{contact.message}}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends './dashboard.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<div id="content" class="can_have_sidenav">
+    <div class="p-5">
+        <div class="col col-md-6 p-3 border border-2 rounded">
+            <h5 class="text-primary fw-light">Update Book</h5>
+            <hr>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form | crispy }}
+                <input type="submit" value="Update Book" class="btn btn-outline-primary rounded">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends '../index.html'%}
+{% load static %}
+
+{% block content %}
+<div class="mt-5 bg-dark p-5" style="height: 95vh;">
+    <div class="container mx-auto row bg-light rounded p-5">
+        <div class="col-md-6 d-none d-md-block">
+            <img src="{% static 'images/man-avatar-standing-free-vector.jpg'%}" alt="" style="height: 500px; width: 100%;">
+        </div>
+        <div class="col-md-6">
+            <h2>Student Registration</h2>
+            <hr>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group mb-3">
+                    {{form.email}}
+                </div>  
+                <div class="form-group mb-3">
+                    {{form.full_names}}
+                </div> 
+                <div class="form-group mb-3">
+                    {{form.admission_no}}
+                </div> 
+                <div class="form-group mb-3">
+                    {{form.password1}}
+                </div> 
+                <div class="form-group mb-3">
+                    {{form.password2}}
+                </div>       
+                <input type="submit" class="btn btn-outline-dark" value="Register">
+            </form>
+            <div class="py-2">
+                <p class="fw-light">Already have an account ? Login <a href="{% url 'login' %}">here.</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends './dashboard.html' %}
+
+{% block content %}
+<div id="content" class="can_have_sidenav">
+    <div class="p-5">
+        <div class="row">
+            <div class="card">
+                <h5 class="card-header">Lending</h5>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Book</th>
+                                    <th scope="col">Borrower</th>
+                                    <th scope="col">Copies</th>
+                                    <th scope="col">Borrower</th>
+                                    <th scope="col">Borrowed</th>
+                                    <th scope="col">Due</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for book in books %}
+                                <tr>
+                                    <td>{{book.book}}</td>
+                                    <td>
+                                        <a href="" class="text-decoration-none">{{book.user}}</a>
+                                    </td>
+                                    <td>{{book.book.copies}}</td>
+                                    <td>{{book.user}}</td>
+                                    <td>{{book.borrow_date | timesince }}</td>
+                                    <td>{{book.due_date}}</td>
+                                    <td>{{book.status}}</td>
+
+                                    <td>
+                                        <a href="{% url 'approve_book_request' book.book.id %}"
+                                            class="btn btn-sm btn-outline-info">Approve</a>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'reject_book_request' book.book.id%}"
+                                            class="btn btn-sm btn-outline-danger">Reject</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {% comment %} pagination {% endcomment %}
+                    <div class='pagination justify-content-center'>
+                        {% if page_obj.has_previous %}
+                        <a href='{% url "manage_books" %}?page={{ page_obj.previous_page_number }}'
+                            class="text-decoration-none">Previous </a>
+                        {% endif %}
+
+                        <span class='mx-4'>
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                        </span>
+
+                        {% if page_obj.has_next %}
+                        <a href='{% url "manage_books" %}?page={{ page_obj.next_page_number }}'
+                            class="text-decoration-none"> Next</a>
+                        {% endif %}
+                    </div>
+                    <!-- END Pagination -->
+                </div>
+            </div>
+        </div>
+        <div class="row gap-3 mt-3">
+            <div class="card mb-3">
+                <h5 class="card-header">Manage Lending</h5>
+                <div class="card-body gap-3">
+                    <a class="btn btn-block btn-warning">Approved</a>
+                    <button class="btn btn-block btn-primary">Pending</button>
+                    <button class="btn btn-block btn-info">Recent</button>
+                    <button class="btn btn-block btn-danger">Rejected</button>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <h5 class="card-header">Recently Approved</h5>
+                <div class="card-body">
+                    <p class="fw-lighter">
+                        Recently approved books will appear here!
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h5 class="card-header">Chart</h5>
+                <div class="card-body">
+                    <div class="card-text fw-lighter">Charts Will Appear Here!</div>
+                    <div id="traffic-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

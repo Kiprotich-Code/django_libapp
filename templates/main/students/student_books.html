@@ -1,0 +1,49 @@
+{% extends './student_home.html' %}
+
+{% block content %}
+<div id="content" class="can_have_sidenav">
+    <div class="p-5">
+        {% if books %}
+        <div class="d-flex gap-2 flex-wrap">
+            {% for book in books %}
+            <div class="col col-md-3">
+                <div class="card mb-3">
+                    <h5 class="card-header">{{book.title}}</h5>
+                    <div class="card-body">
+                        <p>Department: {{book.department}}</p>
+                        <p>ISBN: {{book.ISBN}}</p>
+                        <p>Authored By: {{book.author}}</p>
+                        <p>Published: {{book.year_published}}</p>
+                        <p>Available Copies: {{book.copies}}</p>
+
+                        {% if book.copies > 0 %}
+                            <a href="{% url 'borrow_book' book.id %}" class="btn btn-outline-primary">Borrow</a>
+                        {% else %}
+                            <a href="" class="btn btn-outline-danger disabled">Out Of Stock</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <h3>No books!</h3>
+        {% endif %}
+
+        {% comment %} pagination {% endcomment %}
+        <div class='pagination justify-content-center'>
+            {% if page_obj.has_previous %}
+            <a href='{% url "student_books" %}?page={{ page_obj.previous_page_number }}' class="text-decoration-none">Previous </a>
+            {% endif %}
+
+            <span class='mx-4'>
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href='{ url "student_books" }?page={{ page_obj.next_page_number }}' class="text-decoration-none"> Next</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

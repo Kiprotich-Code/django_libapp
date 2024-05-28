@@ -1,0 +1,21 @@
+{% extends '../index.html' %}
+
+{% block content %}
+<div class="p-5">
+    <div class="col col-md-4 mx-auto mt-5 bg-dark text-white p-5 rounded">
+        <h2>Login</h2>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group mb-4">
+                {{form.email}}
+            </div>
+
+            <div class="form-group mb-4">
+                {{form.password}}
+            </div>
+            <button type="submit" class="btn btn-outline-light">Login</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

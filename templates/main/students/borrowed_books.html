@@ -1,0 +1,58 @@
+{% extends './student_home.html' %}
+
+{% block content %}
+<div id="content" class="can_have_sidenav">
+    <div class="p-5">
+        <h3 class="fw-lighter small"># Books You've Borrowed</h3>
+        <div class="row">
+            <div class="col-12 mb-4 mb-lg-0">
+                {% if borrowed_books %}
+                {% if borrowed_book.status != 'returned' %}
+                <div class="card">
+                    <h5 class="card-header">Books</h5>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Book ID</th>
+                                        <th scope="col">Book</th>
+                                        <th scope="col">Borrowed</th>
+                                        <th scope="col">Due Date</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for book in borrowed_books %}
+                                    <tr>
+                                        <td>{{book.book.id}}</td>
+                                        <td>{{book.book}}</td>
+                                        <td>{{book.borrow_date | timesince}} ago</td>
+                                        <td>{{book.due_date}}</td>
+                                        <td>{{book.status}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                       
+                        <!-- END Pagination -->
+                    </div>
+                </div>
+                {% endif %}
+
+                {% else %}
+                <div class="py-5">
+                    <h3>
+                        You haven't borrowed any books yet! Check out all the books.
+                    </h3>
+                    <a class="btn btn-outline-primary" href="{% url 'student_books'%}">All Books</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

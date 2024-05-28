@@ -1,0 +1,79 @@
+{% extends './dashboard.html' %}
+
+{% block content %}
+<div id="content" class="can_have_sidenav">
+    <div class="p-5">
+        <h3 class="fw-lighter small"># Books</h3>
+        <div class="row">
+            <div class="col-12 mb-4 mb-lg-0">
+                {% if books %}
+                <div class="card">
+                    <h5 class="card-header">Books</h5>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Book ID</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Department</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col">Author</th>
+                                        <th scope="col">Year_Published</th>
+                                        <th scope="col">#</th>
+                                        <th scope="col">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for book in books %}
+                                    <tr>
+                                        <td>{{book.id}}</td>
+                                        <td>{{book.title}}</td>
+                                        <td>{{book.department}}</td>
+                                        <td>{{book.copies}}</td>
+                                        <td>{{book.author}}</td>
+                                        <td>{{book.year_published}}</td>
+                                        <td>
+                                            <a href="{% url 'update_book' book.id %}" class="btn btn-sm btn-outline-primary">Update</a>
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'book_details' book.id %}" class="btn btn-sm btn-outline-warning">Details</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {% comment %} pagination {% endcomment %}
+                        <div class='pagination justify-content-center'>
+                            {% if page_obj.has_previous %}
+                            <a href='{% url "books" %}?page={{ page_obj.previous_page_number }}' class="text-decoration-none">Previous </a>
+                            {% endif %}
+
+                            <span class='mx-4'>
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                            </span>
+
+                            {% if page_obj.has_next %}
+                            <a href='{ url "books" }?page={{ page_obj.next_page_number }}' class="text-decoration-none"> Next</a>
+                            {% endif %}
+                        </div>
+                        <!-- END Pagination -->
+                    </div>
+                </div>
+
+                {% else %}
+                <div class="py-5">
+                    <h3>
+                        There are no books at the moment! Since you're the admin, you can add some books.
+                    </h3>
+                    <a class="btn btn-outline-primary" href="{% url 'add_books'%}">Add Book</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

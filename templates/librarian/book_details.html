@@ -1,0 +1,26 @@
+{% extends './dashboard.html' %}
+
+{% block content %}
+<div id="content" class="can_have_sidenav">
+    <div class="p-5">
+        <h2 class="small fw-lighter"># {{book.title}} details!</h2>
+        <div class="col col-md-6">
+            <div class="card mb-3">
+                <h5 class="card-header">{{book.title}}</h5>
+                <div class="card-body">
+                    <p>Department: {{book.department}}</p>
+                    <p>ISBN: {{book.ISBN}}</p>
+                    <p>Authored By: {{book.author}}</p>
+                    <p>Published: {{book.year_published}}</p>
+                    <p>Available Copies: {{book.copies}}</p>
+                    <p>
+                        <a href="{% url 'update_book' book.id %}" class="btn btn-outline-primary">Update</a>
+                        <a href="{% url 'delete_book' book.id%}" class="btn btn-outline-danger">Delete</a>
+                        <a href="{% url 'books' %}" class="btn btn-outline-warning">All Books</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

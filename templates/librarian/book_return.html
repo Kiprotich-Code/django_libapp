@@ -1,0 +1,82 @@
+{% extends './dashboard.html' %}
+
+{% block content %}
+<div id="content" class="can_have_sidenav">
+    <div class="p-5">
+        <div class="row">
+            <div class="card">
+                <h5 class="card-header">Return</h5>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Book</th>
+                                    <th scope="col">Borrower</th>
+                                    <th scope="col">Copies</th>
+                                    <th scope="col">Borrower</th>
+                                    <th scope="col">Borrowed</th>
+                                    <th scope="col">Due</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Confirmed By</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for book in books_borrowed %}
+                                <tr>
+                                    <td>{{book.book}}</td>
+                                    <td>
+                                        <a href="" class="text-decoration-none">{{book.user}}</a>
+                                    </td>
+                                    <td>{{book.book.copies}}</td>
+                                    <td>{{book.user}}</td>
+                                    <td>{{book.borrow_date | timesince }}</td>
+                                    <td>{{book.due_date}}</td>
+                                    <td>{{book.status}}</td>
+                                    <td>{{request.user}}</td>
+                                    <td>
+                                        <a href="{% url 'confirm_book_return' book.book.id %}"
+                                            class="btn btn-sm btn-outline-info">Confirm Return</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- END Pagination -->
+                </div>
+            </div>
+        </div>
+        <div class="row gap-3 mt-3">
+            <div class="card mb-3">
+                <h5 class="card-header">Book Returns</h5>
+                <div class="card-body gap-3">
+                    <a class="btn btn-block btn-warning">Approved</a>
+                    <button class="btn btn-block btn-primary">Pending</button>
+                    <button class="btn btn-block btn-info">Recent</button>
+                    <button class="btn btn-block btn-danger">Rejected</button>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <h5 class="card-header">Recently Approved</h5>
+                <div class="card-body">
+                    <p class="fw-lighter">
+                        Recently approved books will appear here!
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h5 class="card-header">Chart</h5>
+                <div class="card-body">
+                    <div class="card-text fw-lighter">Charts Will Appear Here!</div>
+                    <div id="traffic-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
