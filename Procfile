@@ -1,1 +1,1 @@
-web: gunicorn djang_lib.wsgi
+web: gunicorn django_lib.wsgi
