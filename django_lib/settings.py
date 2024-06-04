@@ -18,7 +18,7 @@ SECRET_KEY='z)vpzbnfq5!_jpg2tn2kd1d#jiqrt*+6s()k9i=a^8+bvtu3co'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '*.railway.app', '*.now.sh', '*.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'web-production-fce17.up.railway.app', '*.now.sh', '*.vercel.app']
 
 
 # Application definition
