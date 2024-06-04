@@ -77,14 +77,13 @@ WSGI_APPLICATION = 'django_lib.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv("DB_NAME"),
-        'USER': os.getenv("DB_USER"),
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': os.getenv("DB_HOST"),
-        'PORT': os.getenv("DB_PORT"),
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'xnXTxdqtoBQktjbBOXZxNYGDRQRKrOhy',
+        'HOST': 'monorail.proxy.rlwy.net',
+        'PORT': '28594',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -137,4 +136,4 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-fce17.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-fce17.up.railway.app ']
