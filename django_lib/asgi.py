@@ -6,4 +6,3 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_lib.settings')
 
 application = get_asgi_application()
 
-app = application()
